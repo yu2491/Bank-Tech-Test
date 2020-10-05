@@ -15,6 +15,7 @@ describe('BankAccount', function(){
     it('adds amount to balance when deposit occurs and is shown on statement', function(){
         account.deposit(1000);
         expect(account.balance).toEqual(1000)
+        expect(account.transactions.length).toEqual(1)
         expect(account.printStatement()).toContain("|| 1000.00 || || 1000.00")
     })
 
