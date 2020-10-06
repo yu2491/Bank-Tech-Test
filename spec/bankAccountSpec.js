@@ -27,4 +27,12 @@ describe('BankAccount', function(){
         expect(account.printStatement()).toContain("|| || 250.00 || 750.00")
     });
 
+    it('will not withdraw amount if it is less than balance', function() {
+        account.withdraw(2000);
+        expect(account.balance).toEqual(0)
+        expect(account.transactions.length).toEqual(0)
+        expect(account.printStatement()).toEqual("date || credit || debit || balance")
+        expect(account.withdraw(2000)).toThrowError("Insufficient funds available");
+    });
+
 });
