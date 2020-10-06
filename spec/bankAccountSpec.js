@@ -49,4 +49,17 @@ describe('BankAccount', function(){
         account.withdraw(250);
         expect(account.printStatement()).toContain(`6/10/2020 || || 250.00 || 750.00`)
     });
+
+    it('statement shows multiple transactions in reverse order', function(){
+        account.deposit(1000)
+        account.date = new Date(2020, 9, 7);
+        account.deposit(2000)
+        account.date = new Date(2020, 9, 8);
+        account.withdraw(500)
+        var expectedString = `date || credit || debit || balance
+        8/10/2020 || || 500.00 || 2500.00
+        7/10/2020 || 2000.00 || || 3000.00
+        6/10/2020 || 1000.00 || || 1000.00`
+        expect(account.printStatement()).toEqual(expectedString)
+    });
 });
