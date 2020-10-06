@@ -13,8 +13,12 @@ class BankAccount {
     }
 
     withdraw(amount) {
-        this.balance -= amount
-        this.transactions.push(`|| || ${amount.toFixed(2)} || ${this.balance.toFixed(2)}`)
+        if(amount > this.balance) {
+            throw "Insufficient funds available"
+        } else {
+            this.balance -= amount
+            this.transactions.push(`|| || ${amount.toFixed(2)} || ${this.balance.toFixed(2)}`)
+        }
     }
 
     printStatement() {
