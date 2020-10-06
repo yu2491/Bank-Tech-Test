@@ -9,14 +9,23 @@ class BankAccount {
 
     deposit(amount) {
         this.balance += amount
-        this.transactions.push(`|| ${amount} || || ${this.balance}`)
+        this.transactions.push(`|| ${amount.toFixed(2)} || || ${this.balance.toFixed(2)}`)
     }
 
     printStatement() {
-        if(this.transactions.length > 0) {
-            return "date || credit || debit || balance" + this.transactions[0];
-        }
+        return this._statementHeaders() + this._statement();
+    }
+
+    _statementHeaders() {
         return "date || credit || debit || balance"
+    }
+
+    _statement() {
+        var statement = "";
+        for(var i=0; i<this.transactions.length; i++) {
+            statement += `\n${this.transactions[i]}`
+        }
+        return statement
     }
 
 }
