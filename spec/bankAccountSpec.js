@@ -57,9 +57,10 @@ describe('BankAccount', function(){
         account.date = new Date(2020, 9, 8);
         account.withdraw(500)
         var expectedString = `date || credit || debit || balance
-        8/10/2020 || || 500.00 || 2500.00
-        7/10/2020 || 2000.00 || || 3000.00
-        6/10/2020 || 1000.00 || || 1000.00`
+8/10/2020 || || 500.00 || 2500.00
+7/10/2020 || 2000.00 || || 3000.00
+6/10/2020 || 1000.00 || || 1000.00`
+        console.log(expectedString)
         expect(account.printStatement()).toEqual(expectedString)
     });
 });

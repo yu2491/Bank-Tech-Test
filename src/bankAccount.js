@@ -23,6 +23,7 @@ class BankAccount {
     }
 
     printStatement() {
+        console.log(this._statementHeaders() + this._statement())
         return this._statementHeaders() + this._statement();
     }
 
@@ -36,8 +37,8 @@ class BankAccount {
 
     _statement() {
         var statement = "";
-        for(var i=0; i<this.transactions.length; i++) {
-            statement += `\n${this.transactions[i]}`
+        for(var i=this.transactions.length; i>0; i--) {
+            statement += `\n${this.transactions[i-1]}`
         }
         return statement
     }
