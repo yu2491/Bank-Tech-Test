@@ -5,11 +5,12 @@ class BankAccount {
     constructor() {
         this.balance = 0
         this.transactions =  []
+        this.date = new Date()
     }
 
     deposit(amount) {
         this.balance += amount
-        this.transactions.push(`|| ${amount.toFixed(2)} || || ${this.balance.toFixed(2)}`)
+        this.transactions.push(`${this.dateString()} || ${amount.toFixed(2)} || || ${this.balance.toFixed(2)}`)
     }
 
     withdraw(amount) {
@@ -17,12 +18,16 @@ class BankAccount {
             throw "Insufficient funds available"
         } else {
             this.balance -= amount
-            this.transactions.push(`|| || ${amount.toFixed(2)} || ${this.balance.toFixed(2)}`)
+            this.transactions.push(`${this.dateString()} || || ${amount.toFixed(2)} || ${this.balance.toFixed(2)}`)
         }
     }
 
     printStatement() {
         return this._statementHeaders() + this._statement();
+    }
+
+    dateString() {
+        return this.date.getDate() + "/" + (this.date.getMonth() + 1) + "/" + this.date.getFullYear();
     }
 
     _statementHeaders() {
