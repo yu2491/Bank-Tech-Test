@@ -1,24 +1,22 @@
 {
   "name": "bank-tech-test",
   "version": "1.0.0",
-  "description": "",
-  "main": "karma.conf.js",
+  "description": "Simple app that allows you to create a bank account, deposit money and withdraw money into it as well as print a statement which will display all your previous transactions.",
+  "main": "index.js",
   "directories": {
-    "lib": "lib"
+    "lib": "lib",
+    "test": "test"
   },
   "dependencies": {
-    "karma-jasmine": "^4.0.1"
+    "jasmine": "^3.6.1",
+    "npm": "^6.14.8"
   },
   "devDependencies": {
     "eslint": "^7.10.0",
-    "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1"
+    "nyc": "^15.1.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nyc jasmine"
   },
   "repository": {
     "type": "git",

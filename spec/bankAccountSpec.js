@@ -1,8 +1,8 @@
-/* eslint-disable no-undef */
 'use strict'
 
 describe('BankAccount', function () {
-  var account
+  var BankAccount = require('../src/bankAccount.js');
+  var account;
 
   beforeEach(function () {
     account = new BankAccount()

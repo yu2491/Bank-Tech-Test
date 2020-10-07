@@ -46,4 +46,8 @@ myAccount.printStatement()
 ```
 
 ### Tests
-Open the SpecRunner.html file in your browser.
+Clone this repository
+```
+npx jasmine init
+npm test
+```

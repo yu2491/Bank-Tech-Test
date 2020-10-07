@@ -42,3 +42,4 @@ class BankAccount {
     return statement
   }
 }
+module.exports = BankAccount;
