@@ -22,7 +22,6 @@ class BankAccount {
   }
 
   printStatement () {
-    console.log(this._statementHeaders() + this._statement())
     return this._statementHeaders() + this._statement()
   }
 
