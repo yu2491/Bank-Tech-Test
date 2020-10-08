@@ -1,21 +1,24 @@
 'use strict'
 
 describe('Transaction', function(){
-    
+
+    var Transaction = require('../src/transaction.js');
     var transaction;
     var dateDouble;
     
     beforeEach(function(){
-        dateDouble = '7-10-20'
-        transaction = new Transaction(1000, date)
+        dateDouble = {};
+        dateDouble.getDate = function() { return 6; }
+        dateDouble.getMonth = function() { return 8; }
+        dateDouble.getFullYear = function() { return 2020 }
+        transaction = new Transaction(1000, dateDouble)
     });
 
-    it('has a date', function(){
-        expect(transaction.date).toEqual('7-10-20')
+    it('can return its date', function(){
+        expect(transaction.getDate()).toEqual('6/9/2020')
     });
 
-    it('has an amount', function(){
-        expect(transaction.amount).toEqual(1000)
+    it('can return its amount', function(){
+        expect(transaction.getAmount()).toEqual(1000)
     });
-
 });

@@ -1,6 +1,7 @@
 'use strict'
 
 describe('BankAccount', function () {
+  
   var BankAccount = require('../src/bankAccount.js');
   var account;
 
