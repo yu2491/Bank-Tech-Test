@@ -13,7 +13,18 @@ class Transaction {
     }
 
     getDate() {
-        return this.date.getDate() + '/' + (this.date.getMonth() + 1) + '/' + this.date.getFullYear()
+        var dd = this.date.getDate();
+        var mm = this.date.getMonth() + 1; 
+        var yyyy = this.date.getFullYear();
+        if(dd<10) {
+            dd='0'+dd;
+        } 
+
+        if(mm<10) {
+            mm='0'+mm;
+        } 
+
+        return dd + '/' + mm + '/' + yyyy
     }
 
 }

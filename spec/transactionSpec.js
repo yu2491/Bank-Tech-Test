@@ -19,7 +19,7 @@ describe('Transaction', function(){
     });
 
     it('can return its date', function(){
-        expect(transaction.getDate()).toEqual('6/9/2020')
+        expect(transaction.getDate()).toEqual('06/09/2020')
     });
 
     it('can return its amount', function(){

@@ -1,16 +1,17 @@
 'use strict'
 
+var Statement = require('./statement.js');
+var Transaction = require('./transaction.js');
+
 class BankAccount {
 
   constructor () {
-    var Statement = require('../src/statement.js');
     this.balance = 0
     this.statement = new Statement()
   }
 
   deposit (amount) {
     this.balance += amount
-    var Transaction = require('../src/transaction.js');
     let transaction = new Transaction('credit', amount)
     this.statement.addCreditTransaction(transaction,this.balance)
   }
@@ -20,7 +21,6 @@ class BankAccount {
       throw 'Insufficient funds available'
     } else {
       this.balance -= amount
-      var Transaction = require('../src/transaction.js');
       let transaction = new Transaction('debit', amount)
       this.statement.addDebitTransaction(transaction,this.balance)
     }
