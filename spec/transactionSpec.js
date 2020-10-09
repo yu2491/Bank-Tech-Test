@@ -4,13 +4,10 @@ describe('Transaction', function(){
 
     var Transaction = require('../src/transaction.js');
     var transaction;
-    var dateDouble;
     
     beforeEach(function(){
-        dateDouble = {};
-        dateDouble.getDate = function() { return 6; }
-        dateDouble.getMonth = function() { return 8; }
-        dateDouble.getFullYear = function() { return 2020 }
+        var dateDouble = new Date(2020, 8, 5);
+        jasmine.clock().mockDate(dateDouble);
         transaction = new Transaction('credit', 1000, dateDouble)
     });
 
@@ -19,7 +16,7 @@ describe('Transaction', function(){
     });
 
     it('can return its date', function(){
-        expect(transaction.getDate()).toEqual('06/09/2020')
+        expect(transaction.getDate()).toEqual('05/09/2020')
     });
 
     it('can return its amount', function(){
