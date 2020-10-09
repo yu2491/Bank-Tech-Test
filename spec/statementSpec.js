@@ -8,7 +8,7 @@ describe('Statement', function(){
     
     beforeEach(function(){
         transactionDouble = {};
-        transactionDouble.getDate = function() { return '7/10/20'; }
+        transactionDouble.getDate = function() { return '7/10/2020'; }
         statement = new Statement()
     });
 
@@ -17,14 +17,24 @@ describe('Statement', function(){
     });
 
     it('can return correct format for credit amount', function () {
-        transactionDouble.getAmount = function() { return 1000 }
-        statement.add(transactionDouble, 2000)
-        expect(account.printStatement()).toEqual("date || credit || debit || balance\n7/10/2020 || 1000.00 || || 2000.00")
+        transactionDouble.getAmount = function() { return '1000.00' }
+        statement.addCreditTransaction(transactionDouble, 2000)
+        expect(statement.getStatement()).toEqual("date || credit || debit || balance\n7/10/2020 || 1000.00 || || 2000.00")
     });
     
-    it('can return correct format for credit amount', function () {
-        transactionDouble.getAmount = function() { return -250 }
-        statement.add(transactionDouble, 750)
-        expect(account.printStatement()).toContain('7/10/2020 || || 250.00 || 750.00')
+    it('can return correct format for debit amount', function () {
+        transactionDouble.getAmount = function() { return '250.00' }
+        statement.addDebitTransaction(transactionDouble, 750)
+        expect(statement.getStatement()).toEqual('date || credit || debit || balance\n7/10/2020 || || 250.00 || 750.00')
+    });
+
+    it('returns 2 or more transactions in reverse order', function(){
+        transactionDouble.getAmount = function() { return '2000.00' }
+        statement.addCreditTransaction(transactionDouble, 3000)
+        transactionDouble.getDate = function() { return '8/10/2020'; }
+        transactionDouble.getAmount = function() { return '500.00' }
+        statement.addDebitTransaction(transactionDouble, 2500)
+        let expectedString = `date || credit || debit || balance\n8/10/2020 || || 500.00 || 2500.00\n7/10/2020 || 2000.00 || || 3000.00`
+        expect(statement.getStatement()).toEqual(expectedString)
     });
 });

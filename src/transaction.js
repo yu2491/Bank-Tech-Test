@@ -2,13 +2,14 @@
 
 class Transaction {
 
-    constructor(amount,date) {
+    constructor(type, amount, date) {
+        this.type = type
         this.amount = amount
         this.date = typeof date !== 'undefined' ? date : new Date()
     }
 
     getAmount() {
-        return this.amount
+        return this.amount.toFixed(2)
     }
 
     getDate() {

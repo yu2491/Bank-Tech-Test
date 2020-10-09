@@ -11,16 +11,12 @@ class Statement {
       return this.header + this.statement
     }
   
-    add(transaction,balance) {
-      this.statement = this.getString(transaction,balance) + this.statement
+    addCreditTransaction(transaction,balance) {
+      this.statement = `\n${transaction.getDate()} || ${transaction.getAmount()} || || ${balance.toFixed(2)}` + this.statement
     }
-  
-    getString(transaction,balance) {
-      if(transaction.getAmount() > 0 ) {
-        return `\n${transaction.getDate()} || ${transaction.getAmount()} || || ${balance}`
-      } else {
-        return `\n${transaction.getDate()} || || ${transaction.getAmount()} || ${balance}`
-      }
+
+    addDebitTransaction(transaction,balance) {
+      this.statement = `\n${transaction.getDate()} || || ${transaction.getAmount()} || ${balance.toFixed(2)}` + this.statement
     }
 }
 module.exports = Statement;
